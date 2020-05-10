@@ -1,5 +1,5 @@
 fun main(args: Array<String>){
-    val options = arrayOf("Rock","Paper","Scissors")
+    val options = arrayOf("rock","paper","scissors")
     val gameChoice = getGameChoice(options)
     val userChoice = getUserChoice(options)
 
@@ -20,12 +20,16 @@ fun getUserChoice(optionsParam: Array<String>): String{
     print(".")
 
     //read user input
-    val userInput = readLine()
+    var userInput = readLine()
 
     //validation
-    if (userInput != null && userInput in optionsParam){
-        isValidChoice = true
-        userChoice = userInput
+    if (userInput != null){
+        userInput = userInput.toLowerCase()
+
+        if (  userInput in optionsParam) {
+            isValidChoice = true
+            userChoice = userInput
+        }
     }
 
     if (!isValidChoice) println("You must enter a valid choice")
@@ -40,9 +44,9 @@ fun getResult(gameChoice: String, userChoice: String): String{
 
     if (userChoice == gameChoice) result = "Tie!"
     else if (
-                (userChoice == "Rock" && gameChoice == "Scissors") ||
-                (userChoice == "Paper" && gameChoice == "Rock") ||
-                (userChoice == "Scissors" && gameChoice == "Paper")
+                (userChoice == "rock" && gameChoice == "scissors") ||
+                (userChoice == "paper" && gameChoice == "rock") ||
+                (userChoice == "scissors" && gameChoice == "paper")
             ) result = "You win!"
     else result = "You lose!"
 
